@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int minOperations(vector<int>& nums, int k) {
+        // Check if any element is less than k (impossible case)
+        for (int num : nums) {
+            if (num < k) {
+                return -1;
+            }
+        }
+        
+        // Count unique values greater than k
+        set<int> uniqueValues;
+        for (int num : nums) {
+            if (num > k) {
+                uniqueValues.insert(num);
+            }
+        }
+        
+        // Each unique value requires one operation
+        return uniqueValues.size();
+    }
+};
