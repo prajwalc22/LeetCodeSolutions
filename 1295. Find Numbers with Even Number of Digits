@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int findNumbers(vector<int>& nums) {
+        return accumulate(nums.cbegin(), nums.cend(), 0,
+                          [this](const auto& x, const auto& y) {
+                              return x + int(digit_count(y) % 2 == 0);
+                          });
+    }
+
+private:
+    int digit_count(int n) {
+        int result = 0;
+        for (; n; n /= 10, ++result);
+        return result;
+    }
+};
