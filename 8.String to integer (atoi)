@@ -1,0 +1,51 @@
+#include <iostream>
+#include <climits>
+
+using namespace std;
+int main()
+{
+
+    string s;
+    getline(cin, s);
+
+    int i = 0;
+
+    // case 1: for white space
+
+    int n = s.size();
+    while (i < n && s[i] == ' ')
+    {
+        i++;
+    }
+
+    // case2:
+    int sign = 1;
+    if (i < n && (s[i] == '+' || s[i] == '-'))
+    {
+        if (s[i] == '-')
+        {
+            sign = -1;
+        }
+        i++;
+    }
+
+    // case3:
+    long long num = 0;
+
+    while (i < n && isdigit(s[i]))
+    {
+        num = num * 10 + (s[i] - '0');
+
+        if (sign == 1 && num > INT_MAX)
+        {
+            cout << INT_MAX;
+        }
+
+        if (sign == -1 && -num < INT_MIN)
+        {
+            cout << INT_MIN;
+        }
+        i++;
+    }
+    cout << sign * num;
+};
